@@ -1,8 +1,7 @@
-
-import ImageGalleryItem from "./ImageGalleryItem";
-import Button from "components/Button/Button";
+import { ImageGalleryItem } from "./ImageGalleryItem";
+import { Button } from "components/Button/Button";
 import css from "./imageGallery.module.css";
-import Loader from "components/Loader/Loader";
+import { Loader } from "components/Loader/Loader";
 
 
 export function ImageGallery ({status, pictures, totalHits, page, loadMoreImages}) {
