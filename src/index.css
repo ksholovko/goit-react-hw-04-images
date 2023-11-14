@@ -1,0 +1,14 @@
+@import-normalize;
+/* bring in normalize.css styles */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #19161c;
+  height: 100vh;
+  /* display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  align-content: center; */
+}
