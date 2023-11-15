@@ -7,18 +7,21 @@ const modalRoot = document.querySelector("#modal-root")
 
 export function Modal ({onClick, image}) {
   
-const handleKeyDown = e => {
+
+
+  useEffect(() => {
+
+    const handleKeyDown = e => {
       if (e.code === 'Escape') {
      onClick();
     }
     };
 
-  useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
     return () => {
    document.removeEventListener("keydown", handleKeyDown);
   };
-  }, [handleKeyDown] )
+  }, [onClick] )
 
 
 const handleBackdropClick = event => {

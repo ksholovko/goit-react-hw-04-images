@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
@@ -15,42 +15,14 @@ export function App() {
   const [status, setStatus] = useState("");
   const [totalHits, setTotalHits] = useState("");
 
-  useEffect(() => {
 
-    if (searchInput === "") {
-      return;
-    }
-
-    getPictures();
-
-  }, [searchInput, page]);
-
-
-  const onSubmitHandle = (searchInputValue) => {
-    
-    if (searchInputValue === searchInput) {
-      return;
-    }
-
-    setSearchInput(searchInputValue);
-    setPictures([]);
-    setPage(1);
-    setStatus("pending");
-  };
-
-  const loadMoreImages = () => {
-    setPage(page + 1);
-    setStatus("loading more");
-  };
-
-
-  const getPictures = async () => {
+const getPictures = async () => {
     
     try {
 
       const result = await fetchPictures(searchInput, page);
 
-      setPictures([...pictures, ...result.data.hits]);
+      setPictures(prevPictures => [...prevPictures, ...result.data.hits]);
       setStatus('ready');
       setTotalHits(result.data.totalHits);
 
@@ -66,6 +38,35 @@ export function App() {
     }
 
   }
+
+  useEffect(() => {
+
+    if (searchInput === "") {
+      return;
+    }
+
+    getPictures();
+
+  }, [searchInput, page, getPictures]);
+
+
+  const onSubmitHandle = (searchInputValue) => {
+    
+    if (searchInputValue === searchInput) {
+      return;
+    }
+
+    setSearchInput(searchInputValue);
+    setPictures([]);
+    setPage(1);
+    setStatus("pending");
+  };
+
+  const loadMoreImages = () => {
+    setPage(prevPage => prevPage + 1);
+    setStatus("loading more");
+  };
+
 
   return (
     <>
