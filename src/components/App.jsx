@@ -47,7 +47,7 @@ const getPictures = async () => {
 
     getPictures();
 
-  }, [searchInput, page, getPictures]);
+  }, [searchInput, page]);
 
 
   const onSubmitHandle = (searchInputValue) => {
