@@ -16,7 +16,16 @@ export function App() {
   const [totalHits, setTotalHits] = useState("");
 
 
-const getPictures = async () => {
+
+
+  useEffect(() => {
+
+    if (searchInput === "") {
+      return;
+    }
+
+  
+    const getPictures = async () => {
     
     try {
 
@@ -36,17 +45,10 @@ const getPictures = async () => {
         theme: "dark",
       })
     }
-
-  }
-
-  useEffect(() => {
-
-    if (searchInput === "") {
-      return;
     }
-
-    getPictures();
-
+    
+getPictures();
+  
   }, [searchInput, page]);
 
 
